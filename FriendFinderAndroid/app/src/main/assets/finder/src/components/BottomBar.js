@@ -5,17 +5,19 @@ import styles from '../styles/BottomBar.css'
 
 export default () => (
   <div className={styles.bottom}>
-    <BottomNavigation>
+    <BottomNavigation selectedIndex={1}>
       <BottomNavigationItem
         label="View Portal"
         icon={<IconLocationOn />}/>
+
       <BottomNavigationItem
         label="My Friends"
         icon={<IconLocationOn />}/>
+
       <BottomNavigationItem
         label="My Friends"
         icon={<IconLocationOn />}/>
-      {/* <BottomNavigationItem /> */}
+
     </BottomNavigation>
   </div>
 )

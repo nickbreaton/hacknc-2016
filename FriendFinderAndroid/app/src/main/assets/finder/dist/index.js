@@ -66,8 +66,6 @@
 	
 	var _App2 = _interopRequireDefault(_App);
 	
-	__webpack_require__(547);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	// material UI dependency
@@ -29222,7 +29220,7 @@
 	    { className: _BottomBar2.default.bottom },
 	    _react2.default.createElement(
 	      _materialUi.BottomNavigation,
-	      null,
+	      { selectedIndex: 1 },
 	      _react2.default.createElement(_materialUi.BottomNavigationItem, {
 	        label: 'View Portal',
 	        icon: _react2.default.createElement(_locationOn2.default, null) }),
@@ -61370,29 +61368,6 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
-
-/***/ },
-/* 547 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	function locationChanged(lat, lon, alt, acc) {
-	  var marker_image = new AR.ImageResource("assets/pin.png");
-	  var marker_loc = new AR.GeoLocation(35.909445, -79.046870, alt);
-	  var marker_drawable = new AR.ImageDrawable(marker_image, 8);
-	  var marker_object = new AR.GeoObject(marker_loc, {
-	    drawables: {
-	      cam: [marker_drawable]
-	    }
-	  });
-	
-	  AR.logger.debug("Added marker");
-	}
-	
-	AR.logger.activateDebugMode();
-	
-	AR.context.onLocationChanged = locationChanged;
 
 /***/ }
 /******/ ]);
