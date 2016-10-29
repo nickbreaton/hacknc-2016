@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         architectView.onPostCreate();
 
         try{
-            this.architectView.load( "file:///android_asset/demo1/index.html" );
+            this.architectView.load( "file:///android_asset/finder/index.html" );
 //            this.architectView.load( "http://172.27.223.145:9090/index.html" );
         }catch (IOException ex) {
 
@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPostResume() {
         super.onPostResume();
+
+        architectView.setLocation(35.909449, -79.046935,0.0,90);
     }
 
     @Override

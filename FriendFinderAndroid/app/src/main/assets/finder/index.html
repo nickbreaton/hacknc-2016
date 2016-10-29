@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes" name="viewport">
+
+	<title>Friend Finder</title>
+
+	<script src="architect://architect.js"></script>
+	<!--<script src="https://www.wikitude.com/libs/architect.js"></script>-->
+	<script type="text/javascript" src="js/ade.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<link rel="stylesheet" href="css/default.css">
+</head>
+
+<body>
+
+</body>
+<!--<script src="js/imageontarget.js"></script>-->
+
+	<script>
+
+		function locationChanged(lat, lon, alt, acc) {
+
+			var marker_image = new AR.ImageResource("assets/pin.png");
+			  var marker_loc = new AR.GeoLocation(35.909445, -79.046870, alt);  
+			var marker_drawable = new AR.ImageDrawable(marker_image, 8);  
+			var marker_object = new AR.GeoObject(marker_loc, {    drawables: {        cam: [marker_drawable]    } });    
+
+			AR.logger.debug("Added marker");
+		}
+
+		AR.logger.activateDebugMode();
+
+		AR.context.onLocationChanged = locationChanged;
+	</script>
+</html>
