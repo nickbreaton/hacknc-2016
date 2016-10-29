@@ -5,6 +5,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import App from './components/App';
 import './location';
 
+
 // material UI dependency
 injectTapEventPlugin();
 
