@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "build": "webpack -p --define process.env.NODE_ENV=\\'production\\'"
   },
   "devDependencies": {
     "babel": "^6.5.2",
