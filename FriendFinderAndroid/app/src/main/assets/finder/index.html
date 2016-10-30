@@ -6,26 +6,36 @@
   <script src="architect://architect.js"></script>
   <script type="text/javascript" src="lib/ade.js"></script>
   <link rel="stylesheet" href="lib/default.css">
+  <link rel="stylesheet" href="https://js.arcgis.com/4.1/esri/css/main.css">
+  <link rel="stylesheet" href="https://js.arcgis.com/3.18/dijit/themes/claro/claro.css">
+  <link rel="stylesheet" href="https://js.arcgis.com/3.18/esri/css/esri.css">
+  <script src="https://js.arcgis.com/4.1/"></script>
+  <style>
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+      position: fixed;
+    }
+  </style>
 </head>
 <body>
   <div id="root"></div>
   <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>
   <script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAVhJQEuWJ1KzITcT5bNxBVfI8eDomJbGs",
-    authDomain: "hacknc-2016.firebaseapp.com",
-    databaseURL: "https://hacknc-2016.firebaseio.com",
-    storageBucket: "hacknc-2016.appspot.com",
-    messagingSenderId: "165506866775"
-  };
-  firebase.initializeApp(config);
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAVhJQEuWJ1KzITcT5bNxBVfI8eDomJbGs",
+      authDomain: "hacknc-2016.firebaseapp.com",
+      databaseURL: "https://hacknc-2016.firebaseio.com",
+      storageBucket: "hacknc-2016.appspot.com",
+      messagingSenderId: "165506866775"
+    };
+    firebase.initializeApp(config);
 
-  var database = firebase.database();
-</script>
-
-
-  <!--<script src="lib/imageontarget.js"></script>-->
+    var database = firebase.database();
+  </script>
   <script src="lib/location.js"></script>
   <script src="dist/index.js"></script>
 </body>
