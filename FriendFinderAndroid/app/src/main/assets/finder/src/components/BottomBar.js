@@ -1,22 +1,25 @@
 import React from 'react';
-import { BottomNavigation, BottomNavigationItem } from 'material-ui';
+import { BottomNavigation, BottomNavigationItem, FontIcon } from 'material-ui';
 import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
 import styles from '../styles/BottomBar.css'
 
-export default () => (
-  <div className={styles.bottom}>
+export default (props) => (
+  <div className={styles.main}>
     <BottomNavigation selectedIndex={1}>
       <BottomNavigationItem
-        label="View Portal"
-        icon={<IconLocationOn />}/>
+        label="Map"
+        icon={<FontIcon className="material-icons">map</FontIcon>}
+      />
 
       <BottomNavigationItem
-        label="My Friends"
-        icon={<IconLocationOn />}/>
+        label="Camera"
+        icon={<FontIcon className="material-icons">camera</FontIcon>}
+      />
 
       <BottomNavigationItem
-        label="My Friends"
-        icon={<IconLocationOn />}/>
+        label="Friends"
+        icon={<FontIcon className="material-icons">people</FontIcon>}
+      />
 
     </BottomNavigation>
   </div>
