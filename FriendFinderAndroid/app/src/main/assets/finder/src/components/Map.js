@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default () => (
+export default (props) => (
   <iframe
     style={{opacity: 0.8}}
-    width={window.innerWidth}
+    width={props.width}
     height={window.innerHeight + 50}
     frameBorder="0"
     scrolling="no"
