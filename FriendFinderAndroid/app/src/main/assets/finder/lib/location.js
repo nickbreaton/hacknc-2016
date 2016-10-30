@@ -20,11 +20,11 @@
 var World = {
     init: function initFn() {
 
-            AR.logger.activateDebugMode();
+//            AR.logger.activateDebugMode();
     		AR.context.onLocationChanged = function locationChanged(lat, lon, alt, acc) {
 
     		    World.myLocation = {"latitude": lat, "longitude" : lon, "altitude" : alt };
-    		    AR.logger.debug("lat: "+lat+", lon: "+lon);
+//    		    AR.logger.debug("lat: "+lat+", lon: "+lon);
 
 //    		    World.createModelAtLocation(World.myLocation);
 
@@ -48,8 +48,8 @@ var World = {
 
         World.worldLoaded();
 
-        AR.logger.debug("Added marker");
-        AR.logger.debug("lat: "+location.latitude+", lon: "+location.longitude);
+//        AR.logger.debug("Added marker");
+//        AR.logger.debug("lat: "+location.latitude+", lon: "+location.longitude);
     },
 
     createModelAtFriendLocation: function createModelAtLocationFn(snapshot) {
@@ -82,8 +82,8 @@ var World = {
 
             World.worldLoaded();
 
-            AR.logger.debug("Added marker");
-            AR.logger.debug("Friend Location:"+snapshot.val().lat +", "+snapshot.val().lon);
+//            AR.logger.debug("Added marker");
+//            AR.logger.debug("Friend Location:"+snapshot.val().lat +", "+snapshot.val().lon);
         },
 
     worldLoaded: function worldLoadedFn() {
@@ -92,9 +92,9 @@ var World = {
 }
 
 World.init();
-
-
-var msgRef = database.ref('users/1/msg/');
-msgRef.on('value', function(snapshot) {
-    document.getElementById("msg").innerHTML = snapshot.val();
-});
+// 
+//
+// var msgRef = database.ref('users/1/msg/');
+// msgRef.on('value', function(snapshot) {
+//     document.getElementById("msg").innerHTML = snapshot.val();
+// });
