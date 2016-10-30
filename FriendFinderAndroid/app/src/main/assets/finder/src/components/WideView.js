@@ -7,12 +7,15 @@ import styles from '../styles/WideView.css';
 const views = [Map, Camera, FriendsList];
 
 const WideView = (props) => (
-  <div style={{
-    height: '100vh',
-    width: `${(window.innerWidth * views.length)}px`,
-    position: 'absolute',
-    left: `${(-props.index * window.innerWidth)}px`
-  }} className={styles.main}>
+  <div
+    style={{
+      height: '100vh',
+      width: `${(window.innerWidth * views.length)}px`,
+      position: 'absolute',
+      left: `${(-props.index * window.innerWidth)}px`
+    }}
+    className={styles.main}
+  >
     {views.map((View, i) => {
       return <div key={i} style={{
         display: 'inline-block',
@@ -21,7 +24,7 @@ const WideView = (props) => (
         left: `${window.innerWidth * i}px`,
         top: 0
       }}>
-        <View width={`${window.innerWidth}px`}/>
+        <View width={`${window.innerWidth}px`} users={props.users} signIn={props.signIn} track={props.track} user={props.user}/>
       </div>
     })}
   </div>

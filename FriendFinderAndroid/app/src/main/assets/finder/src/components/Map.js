@@ -2,7 +2,6 @@ import React from 'react';
 
 export default class Map extends React.Component {
   componentDidMount() {
-    console.log(window.require);
     window.require([
         "esri/Map",
         "esri/views/SceneView",
@@ -27,7 +26,6 @@ export default class Map extends React.Component {
       Track,
       parser
     ) {
-      alert('DONE!')
       parser.parse();
         //all requests to route.arcgis.com will proxy to the proxyUrl defined in this object.
 
