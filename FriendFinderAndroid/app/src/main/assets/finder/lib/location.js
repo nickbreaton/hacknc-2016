@@ -58,16 +58,16 @@ var World = {
 
             var marker_image = new AR.ImageResource(snapshot.val().url);
             var marker_loc = new AR.GeoLocation(snapshot.val().lat, snapshot.val().lon, AR.CONST.UNKNOWN_ALTITUDE);
-            var marker_drawable = new AR.ImageDrawable(marker_image, 4);
+            var marker_drawable = new AR.ImageDrawable(marker_image, 3);
             var label = new AR.Label(snapshot.val().name, 0.8, {
                                 zOrder: 1,
-                                offsetY: +2.85,
+                                offsetY: +3.05,
                                 style: {
-                                    textColor: '#FFFFFF'
+                                    textColor: '#ffffff'
                                 }
                             });
-            var marker_rec = new AR.ImageDrawable(new AR.ImageResource("assets/bubble.png"), 4, {
-                                     offsetY: +2.55,
+            var marker_rec = new AR.ImageDrawable(new AR.ImageResource("assets/bubble2.png"), 3, {
+                                     offsetY: +2.75,
                                      onClick : function() {
                                          // 'this' represents the marker_rec
                                          this.rotation += 10;
