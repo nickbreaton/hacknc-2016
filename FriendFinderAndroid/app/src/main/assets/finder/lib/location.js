@@ -51,6 +51,23 @@ var World = {
         AR.logger.debug("Added marker");
     },
 
+    createModelAtFriendLocation: function createModelAtLocationFn(snapshot) {
+
+            var marker_image = new AR.ImageResource("assets/pin.png");
+            var marker_loc = new AR.GeoLocation(snapshot.val().lat, snapshot.val().lon, AR.CONST.UNKNOWN_ALTITUDE);
+            var marker_drawable = new AR.ImageDrawable(marker_image, 8);
+            var marker_object = new AR.GeoObject(marker_loc, {
+                drawables: {
+                  cam: [marker_drawable]
+                }
+            });
+
+            World.worldLoaded();
+
+            AR.logger.debug("Added marker");
+            AR.logger.debug("Friend Location:"+snapshot.val().lat +", "+snapshot.val().lon);
+        },
+
     worldLoaded: function worldLoadedFn() {
         World.loaded = true;
     }
@@ -58,5 +75,7 @@ var World = {
 
 World.init();
 
-// liten on change and run this callback World.createModelAtLocation
+var locationRef = firebase.database().ref('location/');
+
+locationRef.on('value', World.createModelAtFriendLocation);
 
