@@ -20,11 +20,11 @@
 var World = {
     init: function initFn() {
 
-            AR.logger.activateDebugMode();
+            // AR.logger.activateDebugMode();
     		AR.context.onLocationChanged = function locationChanged(lat, lon, alt, acc) {
 
     		    World.myLocation = {"latitude": lat, "longitude" : lon, "altitude" : alt };
-    		    AR.logger.debug("lat: "+lat+", lon: "+lon);
+    		    // AR.logger.debug("lat: "+lat+", lon: "+lon);
 
 //    		    World.createModelAtLocation(World.myLocation);
 
@@ -48,7 +48,7 @@ var World = {
 
         World.worldLoaded();
 
-        AR.logger.debug("Added marker");
+        // AR.logger.debug("Added marker");
     },
 
     worldLoaded: function worldLoadedFn() {
@@ -59,4 +59,3 @@ var World = {
 World.init();
 
 // liten on change and run this callback World.createModelAtLocation
-

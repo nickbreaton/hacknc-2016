@@ -4,7 +4,7 @@ import {Avatar, Divider} from 'material-ui'
 import Friend from './Friend';
 
 export default (props) => (
-  <Paper rounded={false} style={{ height: '100vh', width: props.width }}>
+  <Paper rounded={false} style={{ height: '100vh'}}>
     <List>
       <Subheader>{'Find Friends'}</Subheader>
       <Friend name="Itgel Ganbold" src="https://avatars0.githubusercontent.com/u/13912728?v=3&s=400"/>
