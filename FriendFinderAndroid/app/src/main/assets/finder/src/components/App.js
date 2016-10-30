@@ -17,8 +17,8 @@ export default class App extends React.Component {
     return (
       <div>
         {/* <Map/> */}
-        {/* <Camera/> */}
-        <FriendsList/>
+        <Camera/>
+        {/* <FriendsList/> */}
         <BottomBar/>
       </div>
     )

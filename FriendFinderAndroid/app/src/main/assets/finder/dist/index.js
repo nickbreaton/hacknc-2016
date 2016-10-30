@@ -29222,7 +29222,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_FriendsList2.default, null),
+	        _react2.default.createElement(_Camera2.default, null),
 	        _react2.default.createElement(_BottomBar2.default, null)
 	      );
 	    }
