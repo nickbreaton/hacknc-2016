@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPostResume() {
         super.onPostResume();
 
+        architectView.setLocation(35.909397, -79.047084, 0.0, 90);
     }
 
     @Override
