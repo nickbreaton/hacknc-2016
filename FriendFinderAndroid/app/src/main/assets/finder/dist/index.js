@@ -29186,6 +29186,10 @@
 	
 	var _FriendsList2 = _interopRequireDefault(_FriendsList);
 	
+	var _Map = __webpack_require__(586);
+	
+	var _Map2 = _interopRequireDefault(_Map);
+	
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -29218,7 +29222,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_Camera2.default, null),
+	        _react2.default.createElement(_FriendsList2.default, null),
 	        _react2.default.createElement(_BottomBar2.default, null)
 	      );
 	    }
@@ -65320,6 +65324,36 @@
 	
 	exports.default = function (props) {
 	  return _react2.default.createElement(_materialUi.ListItem, { primaryText: props.name, leftAvatar: _react2.default.createElement(_materialUi.Avatar, { src: props.src }) });
+	};
+
+/***/ },
+/* 586 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = function () {
+	  return _react2.default.createElement("iframe", {
+	    style: { opacity: 0.8 },
+	    width: window.innerWidth,
+	    height: window.innerHeight + 50,
+	    frameBorder: "0",
+	    scrolling: "no",
+	    marginHeight: "0",
+	    marginWidth: "0",
+	    title: "Example",
+	    src: "//nickbreaton.maps.arcgis.com/apps/Embed/index.html?webmap=754383b8c86a42b6b64dbe0156f1f7bd&extent=-122.2038,25.7531,-68.239,48.7436&zoom=true&scale=true&disable_scroll=true&theme=light"
+	  });
 	};
 
 /***/ }
