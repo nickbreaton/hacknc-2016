@@ -1,26 +1,28 @@
 import React from 'react';
-import { BottomNavigation, BottomNavigationItem, FontIcon } from 'material-ui';
+import { BottomNavigation, BottomNavigationItem, SvgIcon } from 'material-ui';
 import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
 import styles from '../styles/BottomBar.css'
+import {MapsMap,ImageCamera,SocialPeople} from 'material-ui/svg-icons'
+
 
 export default (props) => (
   <div className={styles.main}>
     <BottomNavigation selectedIndex={props.index}>
       <BottomNavigationItem
         label="Map"
-        icon={<FontIcon className="material-icons">map</FontIcon>}
+        icon={<MapsMap />}
         onTouchTap={() => props.setIndex(0)}
       />
 
       <BottomNavigationItem
         label="Camera"
-        icon={<FontIcon className="material-icons">camera</FontIcon>}
+        icon={<ImageCamera />}
         onTouchTap={() => props.setIndex(1)}
       />
 
       <BottomNavigationItem
         label="Friends"
-        icon={<FontIcon className="material-icons">people</FontIcon>}
+        icon={<SocialPeople />}
         onTouchTap={() => props.setIndex(2)}
       />
 
