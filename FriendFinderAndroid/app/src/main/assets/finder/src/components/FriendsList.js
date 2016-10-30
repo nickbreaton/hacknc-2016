@@ -9,9 +9,19 @@ export default (props) => {
     <List>
       <Subheader>{props.user ? `Signed in as ${props.users[props.user].name}` : 'Sign In'}</Subheader>
       {
-        props.users.map((friend, i) => (
-          <Friend key={i} id={i} name={friend.name} src={friend.url} user={props.user} track={props.track} signIn={props.signIn}/>
-        ))
+        props.users.map((friend, i) => {
+          if (i !== props.user) {
+            return <Friend
+              key={i}
+              id={i}
+              name={friend.name}
+              src={friend.url}
+              user={props.user}
+              track={props.track}
+              signIn={props.signIn}
+            />
+          }
+        })
       }
     </List>
     <FloatingActionButton style={{position: 'absolute', bottom: '80px', right: '20px' }}>

@@ -7,7 +7,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      index: 2,
+      index: 1,
       user: false,
       tracking: false,
       users: []
@@ -18,11 +18,9 @@ export default class App extends React.Component {
     const users = firebase.database().ref('users')
     users.once('value', (users) => {
       for (var i in users.val()) {
-        console.log(i);
         this.setState({
           users: [...this.state.users, users.val()[i]]
         })
-        console.log(this.state.users);
       }
     })
   }
@@ -34,6 +32,7 @@ export default class App extends React.Component {
   }
 
   signIn = userId => {
+    console.log(userId);
     this.setState({
       user: userId
     })
@@ -41,8 +40,11 @@ export default class App extends React.Component {
 
   track = userId => {
     this.setState({
-      tracking: userId
+      tracking: userId,
+      index: 1
     })
+    firebase.database().ref(`users/${userId + 1}`)
+      .on('value', World.createModelAtFriendLocation);
   }
 
   render() {
