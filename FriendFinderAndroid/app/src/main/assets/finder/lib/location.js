@@ -20,11 +20,11 @@
 var World = {
     init: function initFn() {
 
-            // AR.logger.activateDebugMode();
+             AR.logger.activateDebugMode();
     		AR.context.onLocationChanged = function locationChanged(lat, lon, alt, acc) {
 
     		    World.myLocation = {"latitude": lat, "longitude" : lon, "altitude" : alt };
-    		    // AR.logger.debug("lat: "+lat+", lon: "+lon);
+    		     AR.logger.debug("lat: "+lat+", lon: "+lon);
 
 //    		    World.createModelAtLocation(World.myLocation);
 
@@ -38,7 +38,7 @@ var World = {
     createModelAtLocation: function createModelAtLocationFn(location) {
 
         var marker_image = new AR.ImageResource("assets/pin.png");
-        var marker_loc = new AR.GeoLocation(location.latitude - 0.005, location.longitude + 0.0005, AR.CONST.UNKNOWN_ALTITUDE);
+        var marker_loc = new AR.GeoLocation(location.latitude , location.longitude, AR.CONST.UNKNOWN_ALTITUDE);
         var marker_drawable = new AR.ImageDrawable(marker_image, 8);
         var marker_object = new AR.GeoObject(marker_loc, {
             drawables: {
@@ -48,10 +48,13 @@ var World = {
 
         World.worldLoaded();
 
-        // AR.logger.debug("Added marker");
+        AR.logger.debug("Added marker");
+        AR.logger.debug("lat: "+location.latitude+", lon: "+location.longitude);
     },
 
     createModelAtFriendLocation: function createModelAtLocationFn(snapshot) {
+
+            AR.context.destroyAll();
 
             var marker_image = new AR.ImageResource(snapshot.val().url);
             var marker_loc = new AR.GeoLocation(snapshot.val().lat, snapshot.val().lon, AR.CONST.UNKNOWN_ALTITUDE);
@@ -64,10 +67,6 @@ var World = {
                                 }
                             });
 
-            var cam = new Array();
-
-            cam.push(marker_drawable);
-            cam.push(label);
 
             var marker_object = new AR.GeoObject(marker_loc, {
                 drawables: {
@@ -90,4 +89,3 @@ World.init();
 
 var locationRef = firebase.database().ref('location/');
 locationRef.on('value', World.createModelAtFriendLocation);
-// AR.context.onLocationChanged()
