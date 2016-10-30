@@ -15,7 +15,7 @@ export default (props) => (
       />
 
       <BottomNavigationItem
-        label="Camera"
+        label="Finder"
         icon={<ImageCamera />}
         onTouchTap={() => props.setIndex(1)}
       />

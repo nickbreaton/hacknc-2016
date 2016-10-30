@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
         try{
             this.architectView.load( "file:///android_asset/finder/index.html" );
-//            this.architectView.load( "http://172.27.223.145:9090/index.html" );
+//            this.architectView.load( "https://finder-tyvmrruelr.now.sh/" );
         }catch (IOException ex) {
 
         }

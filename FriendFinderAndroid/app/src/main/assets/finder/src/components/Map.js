@@ -2,8 +2,8 @@ import React from 'react';
 
 export default class Map extends React.Component {
   componentDidMount() {
+    console.log(window.require);
     window.require([
-        "esri/core/urlUtils",
         "esri/Map",
         "esri/views/SceneView",
         "esri/layers/FeatureLayer",
@@ -12,13 +12,11 @@ export default class Map extends React.Component {
         "esri/symbols/PolygonSymbol3D",
         "esri/symbols/SimpleFillSymbol",
         "esri/widgets/Track",
-        //"esri/dijit/Directions",
         "dojo/parser",
         "dijit/layout/BorderContainer",
         "dijit/layout/ContentPane",
-        "dojo/domReady!"
+        "dojo/domReady"
     ], function(
-      urlUtils,
       Map,
       SceneView,
       FeatureLayer,
@@ -29,10 +27,9 @@ export default class Map extends React.Component {
       Track,
       parser
     ) {
-        parser.parse();
+      alert('DONE!')
+      parser.parse();
         //all requests to route.arcgis.com will proxy to the proxyUrl defined in this object.
-        urlUtils.addProxyRule({urlPrefix: "route.arcgis.com", proxyUrl: "/sproxy/"});
-        urlUtils.addProxyRule({urlPrefix: "traffic.arcgis.com", proxyUrl: "/sproxy/"});
 
         var map = new Map({basemap: "dark-gray"});
 
@@ -40,7 +37,7 @@ export default class Map extends React.Component {
         var view = new SceneView({
             container: "viewDiv",
             map: map,
-            zoom: 17,
+            zoom: 18,
             center: [-79.0458, 35.9095]
         });
         /********************
@@ -56,22 +53,33 @@ export default class Map extends React.Component {
         var template = {
             "fieldInfos": [
                 {
-                    "fieldName": "Address",
+                    "fieldName": "Name",
                     "format": {
                         "places": 0,
                         "digitSeparator": true
                     }
-                }
+                },
+         "title": "Found! {Address} amount of friends here",		 +        {
+             fieldName: "Name",
+             visible: true,
+             format: {
+               places: 0
+             }
+           }
             ],
-            "title": "Found! {Address} amount of friends here"
+            "title": "Found! {Name} are here",
         };
         //var citiesRenderer = new UniqueValueRenderer({
         //symbol: symbol
         //});
         var renderer = new UniqueValueRenderer({field: "Address", defaultSymbol: new SimpleFillSymbol()});
         renderer.addUniqueValueInfo("high", new SimpleFillSymbol({color: "red"}));
-        renderer.addUniqueValueInfo("mid", new SimpleFillSymbol({color: "green"}));
-        renderer.addUniqueValueInfo("low", new SimpleFillSymbol({color: "yellow"}));
+        renderer.addUniqueValueInfo("mid", new SimpleFillSymbol({color: "yellow"}));
+        renderer.addUniqueValueInfo("low", new SimpleFillSymbol({color: "green"}));
+        var renderer2 = new UniqueValueRenderer({
+       field: "Name",
+       defaultSymbol: new SimpleFillSymbol()
+      });
         renderer.visualVariables = [
             {
                 type: "opacityInfo",
@@ -93,20 +101,14 @@ export default class Map extends React.Component {
         var featureLayer = new FeatureLayer({
           url: "http://services7.arcgis.com/cS890GsOFd26sODz/arcgis/rest/services/UNCV2/FeatureServer/0",
           renderer: renderer,
-          refreshInterval: 0.01
-        });
-
-        var track = new Track({view: view});
-        view.ui.add(track, "top-left");
-        // The sample will start tracking your location
-        // once the view becomes ready
-        view.then(function() {
-            // track.start();
+          refreshInterval: 0.1
         });
 
         featureLayer.popupTemplate = template;
         map.add(featureLayer);
     });
+
+
   }
 
   render() {

@@ -17,6 +17,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'META-ING/LGPL2.1'
+        exclude 'META-ING/LICENSE'
+        exclude 'META-ING/NOTICE'
+    }
 }
 
 dependencies {
