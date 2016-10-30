@@ -61,16 +61,22 @@ var World = {
             var marker_drawable = new AR.ImageDrawable(marker_image, 4);
             var label = new AR.Label(snapshot.val().name, 0.8, {
                                 zOrder: 1,
-                                offsetY: -0.55,
+                                offsetY: +2.85,
                                 style: {
                                     textColor: '#FFFFFF'
                                 }
                             });
-
+            var marker_rec = new AR.ImageDrawable(new AR.ImageResource("assets/bubble.png"), 4, {
+                                     offsetY: +2.55,
+                                     onClick : function() {
+                                         // 'this' represents the marker_rec
+                                         this.rotation += 10;
+                                       }
+                                   });
 
             var marker_object = new AR.GeoObject(marker_loc, {
                 drawables: {
-                  cam: [marker_drawable, label]
+                  cam: [marker_drawable, label,marker_rec]
                 }
             });
 
