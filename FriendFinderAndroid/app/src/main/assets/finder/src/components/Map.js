@@ -1,8 +1,18 @@
 import React from 'react';
+import {RaisedButton} from 'material-ui';
 
 export default class Map extends React.Component {
+  refresh = () => {
+    this.renderMap()
+  }
+
   componentDidMount() {
+    this.renderMap()
+  }
+
+  renderMap() {
     window.require([
+        "esri/core/urlUtils",
         "esri/Map",
         "esri/views/SceneView",
         "esri/layers/FeatureLayer",
@@ -11,33 +21,31 @@ export default class Map extends React.Component {
         "esri/symbols/PolygonSymbol3D",
         "esri/symbols/SimpleFillSymbol",
         "esri/widgets/Track",
+        //"esri/dijit/Directions",
         "dojo/parser",
         "dijit/layout/BorderContainer",
         "dijit/layout/ContentPane",
-        "dojo/domReady"
-    ], function(
-      Map,
-      SceneView,
-      FeatureLayer,
-      UniqueValueRenderer,
-      ExtrudeSymbol3DLayer,
-      PolygonSymbol3D,
-      SimpleFillSymbol,
-      Track,
-      parser
-    ) {
-      parser.parse();
+        "esri/layers/GraphicsLayer",
+        "dojo/domReady!"
+    ], function(urlUtils, Map, SceneView, FeatureLayer, UniqueValueRenderer, ExtrudeSymbol3DLayer, PolygonSymbol3D, SimpleFillSymbol, Track,
+    //    Directions,
+    parser) {
+        parser.parse();
         //all requests to route.arcgis.com will proxy to the proxyUrl defined in this object.
+        urlUtils.addProxyRule({urlPrefix: "route.arcgis.com", proxyUrl: "/sproxy/"});
+        urlUtils.addProxyRule({urlPrefix: "traffic.arcgis.com", proxyUrl: "/sproxy/"});
 
         var map = new Map({basemap: "dark-gray"});
 
         var size = 100
+
         var view = new SceneView({
             container: "viewDiv",
             map: map,
-            zoom: 18,
+            zoom: 16,
             center: [-79.0458, 35.9095]
         });
+
         /********************
              * Add feature layer
              ********************/
@@ -48,6 +56,7 @@ export default class Map extends React.Component {
                     //material: { color: size > 300 ? 'red' : 'blue' }
                 })]
         });
+
         var template = {
             "fieldInfos": [
                 {
@@ -56,28 +65,33 @@ export default class Map extends React.Component {
                         "places": 0,
                         "digitSeparator": true
                     }
-                },
-         "title": "Found! {Address} amount of friends here",		 +        {
-             fieldName: "Name",
-             visible: true,
-             format: {
-               places: 0
-             }
-           }
+                }, {
+                    fieldName: "Name",
+                    visible: true,
+                    format: {
+                        places: 0
+                    }
+                }
             ],
-            "title": "Found! {Name} are here",
+
+            "title": "Found! {Name} are here"
         };
+
         //var citiesRenderer = new UniqueValueRenderer({
         //symbol: symbol
         //});
         var renderer = new UniqueValueRenderer({field: "Address", defaultSymbol: new SimpleFillSymbol()});
-        renderer.addUniqueValueInfo("high", new SimpleFillSymbol({color: "red"}));
+
+        var renderer2 = new UniqueValueRenderer({field: "Name", defaultSymbol: new SimpleFillSymbol()});
+
+        renderer.addUniqueValueInfo("low", new SimpleFillSymbol({color: "red"}));
+
         renderer.addUniqueValueInfo("mid", new SimpleFillSymbol({color: "yellow"}));
-        renderer.addUniqueValueInfo("low", new SimpleFillSymbol({color: "green"}));
-        var renderer2 = new UniqueValueRenderer({
-       field: "Name",
-       defaultSymbol: new SimpleFillSymbol()
-      });
+
+        renderer.addUniqueValueInfo("high", new SimpleFillSymbol({color: "green"}));
+
+        renderer.addUniqueValueInfo("road", new SimpleFillSymbol({color: "black"}));
+
         renderer.visualVariables = [
             {
                 type: "opacityInfo",
@@ -95,21 +109,39 @@ export default class Map extends React.Component {
                 ]
             }
         ];
+
         // Carbon storage of trees in Warren Wilson College.
-        var featureLayer = new FeatureLayer({
-          url: "http://services7.arcgis.com/cS890GsOFd26sODz/arcgis/rest/services/UNCV2/FeatureServer/0",
-          renderer: renderer,
-          refreshInterval: 0.1
+        var featureLayer = new FeatureLayer({url: "http://services7.arcgis.com/cS890GsOFd26sODz/arcgis/rest/services/UNCV2/FeatureServer/0", renderer: renderer});
+
+        // Carbon storage of trees in Warren Wilson College.
+        var featureLayer2 = new FeatureLayer({url: "http://services7.arcgis.com/cS890GsOFd26sODz/arcgis/rest/services/UNCV2/FeatureServer/0", renderer: renderer2});
+
+        var track = new Track({view: view});
+        view.ui.add(track, "top-left");
+
+        // The sample will start tracking your location
+        // once the view becomes ready
+        view.then(function() {
+            // track.start();
         });
 
-        featureLayer.popupTemplate = template;
+        //featureLayer.popupTemplate = template;
+        featureLayer2.popupTemplate = template;
+
         map.add(featureLayer);
+        map.add(featureLayer2);
     });
-
-
   }
 
   render() {
-    return <div id="viewDiv" style={{opacity: 0.85}}/>
+    return <div style={{position:'relative', width: '100%', 'height': '150px'}}>
+      <RaisedButton label="Refresh" style={{
+        position: 'absolute',
+        top: '15px',
+        right: '15px',
+        zIndex: 1000
+      }} onClick={this.refresh}/>
+      <div id="viewDiv" style={{opacity: 0.85}}/>
+    </div>
   }
 }
