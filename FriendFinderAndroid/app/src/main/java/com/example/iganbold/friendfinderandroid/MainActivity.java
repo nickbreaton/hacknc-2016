@@ -4,6 +4,10 @@ package com.example.iganbold.friendfinderandroid;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.location.Location;
+import android.os.Handler;
 
 import com.wikitude.architect.ArchitectView;
 import com.wikitude.architect.StartupConfiguration;
@@ -13,7 +17,7 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
 
     private ArchitectView architectView;
-
+    private GPSTracker gps = new GPSTracker(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,27 +46,26 @@ public class MainActivity extends AppCompatActivity {
     protected void onPostResume() {
         super.onPostResume();
 
-        architectView.setLocation(35.909449, -79.046935,0.0,90);
+
+        architectView.setLocation(gps.getLatitude(), gps.getLongitude(),0.0,90);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
         architectView.onResume();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
+        gps.stopUsingGPS();
         architectView.onDestroy();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-
         architectView.onPause();
     }
 
