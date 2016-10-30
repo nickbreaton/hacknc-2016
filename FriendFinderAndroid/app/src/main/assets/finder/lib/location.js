@@ -20,18 +20,18 @@
 var World = {
     init: function initFn() {
 
-             AR.logger.activateDebugMode();
+            AR.logger.activateDebugMode();
     		AR.context.onLocationChanged = function locationChanged(lat, lon, alt, acc) {
 
     		    World.myLocation = {"latitude": lat, "longitude" : lon, "altitude" : alt };
-    		     AR.logger.debug("lat: "+lat+", lon: "+lon);
+    		    AR.logger.debug("lat: "+lat+", lon: "+lon);
 
 //    		    World.createModelAtLocation(World.myLocation);
 
-//    		    if (!World.created) {
-//                    World.created = true;
-//                    World.createModelAtLocation(World.myLocation);
-//                }
+    		    if (!World.created) {
+                    World.created = true;
+                    World.createModelAtLocation(World.myLocation);
+                }
             }
     	},
 
