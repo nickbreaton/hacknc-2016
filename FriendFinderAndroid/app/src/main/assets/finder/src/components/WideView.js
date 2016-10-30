@@ -24,7 +24,7 @@ const WideView = (props) => (
         left: `${window.innerWidth * i}px`,
         top: 0
       }}>
-        <View width={`${window.innerWidth}px`} users={props.users} signIn={props.signIn} track={props.track} user={props.user}/>
+        <View clearMessage={props.clearMessage} message={props.message} messageAuthor={props.messageAuthor} width={`${window.innerWidth}px`} users={props.users} signIn={props.signIn} track={props.track} user={props.user}/>
       </div>
     })}
   </div>

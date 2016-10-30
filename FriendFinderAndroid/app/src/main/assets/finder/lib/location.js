@@ -92,9 +92,9 @@ var World = {
 }
 
 World.init();
-
-
-var msgRef = database.ref('users/1/msg/');
-msgRef.on('value', function(snapshot) {
-    document.getElementById("msg").innerHTML = snapshot.val();
-});
+// 
+//
+// var msgRef = database.ref('users/1/msg/');
+// msgRef.on('value', function(snapshot) {
+//     document.getElementById("msg").innerHTML = snapshot.val();
+// });
