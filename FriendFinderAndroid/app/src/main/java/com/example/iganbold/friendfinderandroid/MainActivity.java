@@ -78,7 +78,11 @@ public class MainActivity extends AppCompatActivity {
 
         try{
             this.architectView.load( "file:///android_asset/finder/index.html" );
+<<<<<<< HEAD
 //            this.architectView.load( "https://finder-tyvmrruelr.now.sh/" );
+=======
+//            this.architectView.load("https://finder-tyvmrruelr.now.sh" );
+>>>>>>> 5c48a9285408a2a68db8631b249c52b33c1d76e9
         }catch (IOException ex) {
 
         }
@@ -88,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPostResume() {
         super.onPostResume();
 
-        architectView.setLocation(35.909397, -79.047084, 0.0, 90);
+        architectView.setLocation(35.909414, -79.046938, 0.0, 90);
     }
 
     @Override
