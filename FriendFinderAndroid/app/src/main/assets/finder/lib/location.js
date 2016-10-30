@@ -55,10 +55,23 @@ var World = {
 
             var marker_image = new AR.ImageResource(snapshot.val().url);
             var marker_loc = new AR.GeoLocation(snapshot.val().lat, snapshot.val().lon, AR.CONST.UNKNOWN_ALTITUDE);
-            var marker_drawable = new AR.ImageDrawable(marker_image, 8);
+            var marker_drawable = new AR.ImageDrawable(marker_image, 4);
+            var label = new AR.Label(snapshot.val().name, 0.8, {
+                                zOrder: 1,
+                                offsetY: -0.55,
+                                style: {
+                                    textColor: '#FFFFFF'
+                                }
+                            });
+
+            var cam = new Array();
+
+            cam.push(marker_drawable);
+            cam.push(label);
+
             var marker_object = new AR.GeoObject(marker_loc, {
                 drawables: {
-                  cam: [marker_drawable]
+                  cam: [marker_drawable, label]
                 }
             });
 
