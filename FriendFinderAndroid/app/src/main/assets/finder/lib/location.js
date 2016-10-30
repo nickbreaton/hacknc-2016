@@ -93,5 +93,5 @@ var World = {
 
 World.init();
 
-var locationRef = firebase.database().ref('location/');
+var locationRef = firebase.database().ref('users/2');
 locationRef.on('value', World.createModelAtFriendLocation);
