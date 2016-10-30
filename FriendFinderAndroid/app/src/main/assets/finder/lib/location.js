@@ -53,7 +53,7 @@ var World = {
 
     createModelAtFriendLocation: function createModelAtLocationFn(snapshot) {
 
-            var marker_image = new AR.ImageResource("assets/pin.png");
+            var marker_image = new AR.ImageResource(snapshot.val().url);
             var marker_loc = new AR.GeoLocation(snapshot.val().lat, snapshot.val().lon, AR.CONST.UNKNOWN_ALTITUDE);
             var marker_drawable = new AR.ImageDrawable(marker_image, 8);
             var marker_object = new AR.GeoObject(marker_loc, {
@@ -78,4 +78,6 @@ World.init();
 var locationRef = firebase.database().ref('location/');
 
 locationRef.on('value', World.createModelAtFriendLocation);
+
+//AR.context.onLocationChanged()
 
