@@ -106,14 +106,6 @@ export default class Map extends React.Component {
 
         featureLayer.popupTemplate = template;
         map.add(featureLayer);
-
-        setInterval(() => {
-          var renderer = new UniqueValueRenderer({field: "Address", defaultSymbol: new SimpleFillSymbol()});
-          renderer.addUniqueValueInfo("high", new SimpleFillSymbol({color: "red"}));
-          renderer.addUniqueValueInfo("mid", new SimpleFillSymbol({color: "green"}));
-          renderer.addUniqueValueInfo("low", new SimpleFillSymbol({color: "yellow"}));
-          featureLayer.renderer = featureLayer.renderer.clone();
-        }, 1000);
     });
   }
 
