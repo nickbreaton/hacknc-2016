@@ -1,5 +1,7 @@
 # FriendZone
 
+Built by [Itgel Ganbold](https://github.com/iganbold), [Mohamed Salad](https://github.com/Salad7), [Nico Gonzalez](https://github.com/nicogonza), and [Nick Breaton](https://github.com/nickbreaton) 
+
 ### Inspiration
 Meeting people at a crowded location can be a hassle. Nobody should have to waste so much time looking for a friend. We created this app to solve that challenge
 
